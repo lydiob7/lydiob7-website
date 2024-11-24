@@ -6,6 +6,12 @@ export type Config = {
   site?: SiteConfig;
   metadata?: MetaDataConfig;
   i18n?: I18NConfig;
+  logo?: {
+    url: string;
+    width: number;
+    height: number;
+    alt: string;
+  };
   apps?: {
     blog?: AppBlogConfig;
   };
@@ -17,6 +23,12 @@ export interface SiteConfig {
   name: string;
   site?: string;
   base?: string;
+  logo?: {
+    url: string;
+    width: number;
+    height: number;
+    alt: string;
+  };
   trailingSlash?: boolean;
   googleSiteVerificationId?: string;
 }

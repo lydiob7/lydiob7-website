@@ -1,7 +1,9 @@
 backend:
-  name: git-gateway
+  name: Lydiob7
   branch: main
 
+name: Lydiob7
+site: 'https://lydiob7.com'
 media_folder: 'src/assets/images'
 public_folder: '/_astro'
 

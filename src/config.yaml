@@ -1,7 +1,12 @@
 site:
-  name: AstroWind
-  site: 'https://astrowind.vercel.app'
+  name: Lydiob7
+  site: 'https://lydiob7.com'
   base: '/'
+  logo:
+    url: 'https://res.cloudinary.com/djlyawea4/image/upload/v1732459049/Lydiob7%20Website/pzrbls8sjvc0zytf8jfp.png'
+    alt: 'Lydiob7'
+    height: 67
+    width: 105
   trailingSlash: false
 
   googleSiteVerificationId: orcPxI47GSa-cRvY11tUe6iGg2IO_RPvnA1q95iEM3M
@@ -9,14 +14,14 @@ site:
 # Default SEO metadata
 metadata:
   title:
-    default: AstroWind
-    template: '%s — AstroWind'
+    default: Lydiob7
+    template: '%s — Lydiob7'
   description: "\U0001F680 Suitable for Startups, Small Business, Sass Websites, Professional Portfolios, Marketing Websites, Landing Pages & Blogs."
   robots:
     index: true
     follow: true
   openGraph:
-    site_name: AstroWind
+    site_name: Lydiob7
     images:
       - url: '~/assets/images/default.png'
         width: 1200
