@@ -49,6 +49,33 @@ export interface Taxonomy {
   title: string;
 }
 
+export interface Worker {
+  name: string;
+  portfolio?: string;
+}
+
+export interface MobileApp {
+  id: string;
+  slug: string;
+  permalink: string;
+
+  excerpt?: string;
+  categories?: Taxonomy[];
+  designers: Worker[];
+  developers: Worker[];
+  downloadLinks: {
+    appStore?: string;
+    googlePlay?: string;
+  };
+  draft?: boolean;
+  excerpt?: string;
+  image?: string;
+  publishDate: Date;
+  updateDate?: Date;
+  tags?: Taxonomy[];
+  title: string;
+}
+
 export interface MetaData {
   title?: string;
   ignoreTitleTemplate?: boolean;

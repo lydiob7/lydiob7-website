@@ -1,0 +1,20 @@
+---
+import Item from '~/components/mobileApp/ListItem.astro';
+import type { MobileApp } from '~/types';
+
+export interface Props {
+  mobileApps: Array<MobileApp>;
+}
+
+const { mobileApps } = Astro.props;
+---
+
+<ul>
+  {
+    mobileApps.map((mobileApp) => (
+      <li class="mb-12 md:mb-20">
+        <Item mobileApp={mobileApp} />
+      </li>
+    ))
+  }
+</ul>

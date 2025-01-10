@@ -1,0 +1,60 @@
+---
+import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
+
+import { APP_MOBILE_APP } from 'astrowind:config';
+import type { MobileApp } from '~/types';
+
+import { getPermalink } from '~/utils/permalinks';
+import { getFormattedDate } from '~/utils/utils';
+
+export interface Props {
+  mobileApp: MobileApp;
+}
+
+const { mobileApp } = Astro.props;
+const link = APP_MOBILE_APP?.post?.isEnabled ? getPermalink(mobileApp.permalink, 'mobileApp') : '';
+---
+
+<article class={`max-w-md mx-auto md:max-w-none grid gap-3 ${mobileApp?.images[0] ? 'md:grid-cols-1' : ''}`}>
+  <div>
+    <header>
+      <div class="mb-1">
+        <span class="text-sm">
+          <Icon name="tabler:clock" class="w-3.5 h-3.5 inline-block -mt-0.5 dark:text-gray-400" />
+          <time datetime={String(mobileApp.publishDate)} class="inline-block"
+            >{getFormattedDate(mobileApp.publishDate)}</time
+          >
+        </span>
+      </div>
+      <h2 class="text-xl sm:text-2xl font-bold leading-tight mb-2 font-heading dark:text-slate-300">
+        {
+          link ? (
+            <a class="hover:text-primary dark:hover:text-blue-700 transition ease-in duration-200" href={link}>
+              {mobileApp.title}
+            </a>
+          ) : (
+            mobileApp.title
+          )
+        }
+      </h2>
+    </header>
+    {mobileApp.excerpt && <p class="flex-grow text-muted dark:text-slate-400 text-lg">{mobileApp.excerpt}</p>}
+  </div>
+  {
+    mobileApp.images[0] && (
+      <a class="relative block group" href={link ?? 'javascript:void(0)'}>
+        <div class="relative md:h-80 h-56">
+          <Image
+            src={mobileApp.images[0]}
+            widths={[360, 1200]}
+            width={1200}
+            sizes={`(max-width:540px) 360px, 1200px`}
+            class="h-full rounded-lg sm:rounded-md object-cover"
+            alt={mobileApp.title}
+          />
+        </div>
+      </a>
+    )
+  }
+</article>

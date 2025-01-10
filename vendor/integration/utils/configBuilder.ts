@@ -14,6 +14,7 @@ export type Config = {
   };
   apps?: {
     blog?: AppBlogConfig;
+    mobileApp?: AppMobileAppConfig;
   };
   ui?: unknown;
   analytics?: unknown;
@@ -81,6 +82,45 @@ export interface AppBlogConfig {
     };
   };
 }
+export interface AppMobileAppConfig {
+  isEnabled: boolean;
+  postsPerPage: number;
+  isRelatedPostsEnabled: boolean;
+  relatedPostsCount: number;
+  mobileApp: {
+    isEnabled: boolean;
+    permalink: string;
+    robots: {
+      index: boolean;
+      follow: boolean;
+    };
+  };
+  list: {
+    isEnabled: boolean;
+    pathname: string;
+    robots: {
+      index: boolean;
+      follow: boolean;
+    };
+  };
+  category: {
+    isEnabled: boolean;
+    pathname: string;
+    robots: {
+      index: boolean;
+      follow: boolean;
+    };
+  };
+  tag: {
+    isEnabled: boolean;
+    pathname: string;
+    robots: {
+      index: boolean;
+      follow: boolean;
+    };
+  };
+}
+
 export interface AnalyticsConfig {
   vendors: {
     googleAnalytics: {
@@ -180,8 +220,50 @@ const getAppBlog = (config: Config) => {
       },
     },
   };
-
   return merge({}, _default, config?.apps?.blog ?? {}) as AppBlogConfig;
+};
+
+const getAppMobileApp = (config: Config) => {
+  const _default = {
+    isEnabled: false,
+    postsPerPage: 6,
+    isRelatedPostsEnabled: false,
+    relatedPostsCount: 4,
+    mobileApp: {
+      isEnabled: true,
+      permalink: '/mobile-app/%slug%',
+      robots: {
+        index: true,
+        follow: true,
+      },
+    },
+    list: {
+      isEnabled: true,
+      pathname: 'mobile-app',
+      robots: {
+        index: true,
+        follow: true,
+      },
+    },
+    category: {
+      isEnabled: true,
+      pathname: 'category',
+      robots: {
+        index: true,
+        follow: true,
+      },
+    },
+    tag: {
+      isEnabled: true,
+      pathname: 'tag',
+      robots: {
+        index: false,
+        follow: true,
+      },
+    },
+  };
+
+  return merge({}, _default, config?.apps?.mobileApp ?? {}) as AppMobileAppConfig;
 };
 
 const getUI = (config: Config) => {
@@ -210,6 +292,7 @@ export default (config: Config) => ({
   I18N: getI18N(config),
   METADATA: getMetadata(config),
   APP_BLOG: getAppBlog(config),
+  APP_MOBILE_APP: getAppMobileApp(config),
   UI: getUI(config),
   ANALYTICS: getAnalytics(config),
 });

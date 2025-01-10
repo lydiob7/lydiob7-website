@@ -63,6 +63,31 @@ const postCollection = defineCollection({
   }),
 });
 
+const workerSchema = z.object({
+  name: z.string(),
+  portfolio: z.string().optional(),
+});
+
+const mobileAppCollection = defineCollection({
+  schema: z.object({
+    categories: z.array(z.string()).optional(),
+    designers: z.array(workerSchema),
+    developers: z.array(workerSchema),
+    downloadLinks: z.object({
+      appStore: z.string().optional(),
+      googlePlay: z.string().optional(),
+    }),
+    draft: z.boolean().optional(),
+    excerpt: z.string().optional(),
+    image: z.string().optional(),
+    publishDate: z.date().optional(),
+    updateDate: z.date().optional(),
+    tags: z.array(z.string()).optional(),
+    title: z.string(),
+  }),
+});
+
 export const collections = {
+  mobileApp: mobileAppCollection,
   post: postCollection,
 };

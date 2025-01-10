@@ -1,0 +1,21 @@
+---
+import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
+import Layout from '~/layouts/PageLayout.astro';
+import { getStaticPathsMobileAppPost } from '~/utils/mobileApp';
+
+export const prerender = true;
+
+export const getStaticPaths = (async () => {
+  return await getStaticPathsMobileAppPost();
+}) satisfies GetStaticPaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { mobileApp } = Astro.props as Props;
+
+console.log(mobileApp);
+---
+
+<Layout metadata={{ title: 'Apps' }}>
+  <h1>Apps</h1>
+</Layout>

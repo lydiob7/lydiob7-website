@@ -1,6 +1,6 @@
 import slugify from 'limax';
 
-import { SITE, APP_BLOG } from 'astrowind:config';
+import { SITE, APP_BLOG, APP_MOBILE_APP } from 'astrowind:config';
 
 import { trim } from '~/utils/utils';
 
@@ -24,8 +24,10 @@ export const cleanSlug = (text = '') =>
 export const BLOG_BASE = cleanSlug(APP_BLOG?.list?.pathname);
 export const CATEGORY_BASE = cleanSlug(APP_BLOG?.category?.pathname);
 export const TAG_BASE = cleanSlug(APP_BLOG?.tag?.pathname) || 'tag';
+export const MOBILE_APP_BASE = cleanSlug(APP_MOBILE_APP?.list?.pathname);
 
 export const POST_PERMALINK_PATTERN = trimSlash(APP_BLOG?.post?.permalink || `${BLOG_BASE}/%slug%`);
+export const MOBILE_APP_PERMALINK_PATTERN = trimSlash(APP_MOBILE_APP?.post?.permalink || `${MOBILE_APP_BASE}/%slug%`);
 
 /** */
 export const getCanonical = (path = ''): string | URL => {
@@ -91,6 +93,8 @@ export const getHomePermalink = (): string => getPermalink('/');
 
 /** */
 export const getBlogPermalink = (): string => getPermalink(BLOG_BASE);
+
+export const getMobileAppPermalink = (): string => getPermalink(MOBILE_APP_BASE);
 
 /** */
 export const getAsset = (path: string): string =>
